@@ -26,6 +26,13 @@ add_executable(FlappyBird
 
 target_link_libraries(FlappyBird PRIVATE raylib)
 
+add_custom_command(
+    TARGET FlappyBird POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory
+        "${CMAKE_SOURCE_DIR}/assets"
+        "$<TARGET_FILE_DIR:FlappyBird>/assets"
+)
+
 if(MSVC)
     target_compile_options(FlappyBird PRIVATE /W4)
 endif()
